@@ -73,10 +73,10 @@ In this notebook we used:
 
    - Filled forward with `df.fillna(method='ffill')` to maintain continuous time series.
 
-`````````python
+````````python
 # Handling missing values
 fin_data.fillna(method='ffill', inplace=True)
-fin_data.fillna(method='bfill', inplace=True)````````
+fin_data.fillna(method='bfill', inplace=True)```
 
 3. **Feature Engineering**
    - Computed **cumulative returns**.
@@ -220,4 +220,4 @@ An improvement to my analysis could be the following:
 Take some significant time to tune the model parameters as well as include more features that might be relevant for stock price prediction.
 Try out more models and see if there might be one with a better performance than the **RandomForestRegressor**. I only tried three models for simplicity and time constraints.
 Explore other companies stocks to see how well one can predict their stocks prices with different models.
-`````````
+````````
