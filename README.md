@@ -76,7 +76,8 @@ In this notebook we used:
 ````````python
 # Handling missing values
 fin_data.fillna(method='ffill', inplace=True)
-fin_data.fillna(method='bfill', inplace=True)```
+fin_data.fillna(method='bfill', inplace=True)
+```
 
 3. **Feature Engineering**
    - Computed **cumulative returns**.
