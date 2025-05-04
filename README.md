@@ -73,9 +73,12 @@ In this notebook we used:
 
    - Filled forward with `df.fillna(method='ffill')` to maintain continuous time series.
 
-``````# Handling missing values
+`
+
+# Handling missing values
+
 fin_data.fillna(method='ffill', inplace=True)
-fin_data.fillna(method='bfill', inplace=True)```
+fin_data.fillna(method='bfill', inplace=True)`
 
 3. **Feature Engineering**
    - Computed **cumulative returns**.
@@ -87,8 +90,8 @@ fin_data.fillna(method='bfill', inplace=True)```
 4. **Train–Test Split**
    - Chronologically split data: first 80% of dates for training, last 20% for testing to mimic real‑world forecasting.
 
-```#split the data into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)```
+`#split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)`
 
 ## Algorithms and Techniques
 
@@ -98,7 +101,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 
 #### Architecture & Hyperparameters
 
-```from tensorflow.keras.models import Sequential
+`from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Input, LSTM, Dense
 from sklearn.metrics import mean_absolute_error
 
@@ -116,26 +119,25 @@ model_lstm.fit(X_train_reshaped, y_train, batch_size=1, epochs=5, verbose=1)
 # Evaluate
 
 preds_lstm = model_lstm.predict(X_test_reshaped)
-mae_lstm = mean_absolute_error(y_test, preds_lstm)```
-
+mae_lstm = mean_absolute_error(y_test, preds_lstm)`
 
 **Refined Hyperparameters**
-```# Train the model - part 4 (increasing no. of epochs and batch_size)
+
+`# Train the model - part 4 (increasing no. of epochs and batch_size)
 xtrain = np.array(xtrain)
 xtrain_reshaped = xtrain.reshape((xtrain.shape[0], xtrain.shape[1], 1))
 
-model2.fit(xtrain_reshaped, ytrain, batch_size =100, epochs=10, verbose=0)```
-
-
+model2.fit(xtrain_reshaped, ytrain, batch_size =100, epochs=10, verbose=0)`
 
 ### 2. Linear Regression
 
 **Why?** A simple, interpretable baseline for continuous price prediction.
 
 **Implementation**
-  ```model_lin2 = LinearRegression()
-  #fit the model
-  model_lin2.fit(X_train,y_trai```
+
+``````model_lin2 = LinearRegression()
+#fit the model
+model_lin2.fit(X_train,y_trai```
 
 #prediction
 predict = model_lin2.predict(X_test)
