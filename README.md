@@ -180,8 +180,8 @@ mean_abs_error2
 
 **Historical price data fetched via pandas_datareader from Yahoo Finance.**
 
+```python
 # dowloading yahoo finance
-
 import yfinance as yfin
 
 tickers = ('VOO', 'AAPL', 'MSFT', 'AMZN', 'UPRO', 'NVDA', 'TSLA', 'SPY')
@@ -191,7 +191,8 @@ end = '2024-12-31'
 
 fin_data = yfin.download(tickers, start, end) # downloading yahoo finance data for a specific date
 
-fin_data.to_csv('./data/fin_data.csv')```
+fin_data.to_csv('./data/fin_data.csv')
+```
 
 **Preprocessing & Feature Engineering**
 
@@ -218,7 +219,7 @@ fin_data.to_csv('./data/fin_data.csv')```
 
 From my investigation of three different models, I observed that RandomForestRegressor delivered a much lower mean absolute error **(0.00755, 0.0038)** than the LSTM **(0.0087, 1.530)** or LinearRegression **(0.646, 0.132)** for Apple and SPY respectively. I also observed that tuning the parameters for LSTM (e.g the number of epochs and batch_size) resulted in better prediction.
 
-### Interesting facts about the project
+#### Interesting facts about the project
 
 When exploring the data, it was interesting to see how the stock prices of different companies changed due to the pandemic and how the technological companies stock prices bounced back more quickly than the other companies considered.
 Here are some major highlights from the data exploration section:
