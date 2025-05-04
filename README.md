@@ -90,8 +90,9 @@ fin_data.fillna(method='bfill', inplace=True)`
 4. **Train–Test Split**
    - Chronologically split data: first 80% of dates for training, last 20% for testing to mimic real‑world forecasting.
 
-`#split the data into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)`
+```````python
+#split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)```
 
 ## Algorithms and Techniques
 
@@ -221,4 +222,4 @@ An improvement to my analysis could be the following:
 Take some significant time to tune the model parameters as well as include more features that might be relevant for stock price prediction.
 Try out more models and see if there might be one with a better performance than the **RandomForestRegressor**. I only tried three models for simplicity and time constraints.
 Explore other companies stocks to see how well one can predict their stocks prices with different models.
-``````
+```````
