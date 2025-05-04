@@ -73,7 +73,7 @@ In this notebook we used:
 
    - Filled forward with `df.fillna(method='ffill')` to maintain continuous time series.
 
-````````python
+```python
 # Handling missing values
 fin_data.fillna(method='ffill', inplace=True)
 fin_data.fillna(method='bfill', inplace=True)
@@ -89,7 +89,7 @@ fin_data.fillna(method='bfill', inplace=True)
 4. **Train–Test Split**
    - Chronologically split data: first 80% of dates for training, last 20% for testing to mimic real‑world forecasting.
 
-```````python
+python
 #split the data into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)```
 
@@ -101,7 +101,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 
 #### Architecture & Hyperparameters
 
-`from tensorflow.keras.models import Sequential
+from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Input, LSTM, Dense
 from sklearn.metrics import mean_absolute_error
 
@@ -119,15 +119,16 @@ model_lstm.fit(X_train_reshaped, y_train, batch_size=1, epochs=5, verbose=1)
 # Evaluate
 
 preds_lstm = model_lstm.predict(X_test_reshaped)
-mae_lstm = mean_absolute_error(y_test, preds_lstm)`
+mae_lstm = mean_absolute_error(y_test, preds_lstm)
 
 **Refined Hyperparameters**
 
-`# Train the model - part 4 (increasing no. of epochs and batch_size)
+# Train the model - part 4 (increasing no. of epochs and batch_size)
+
 xtrain = np.array(xtrain)
 xtrain_reshaped = xtrain.reshape((xtrain.shape[0], xtrain.shape[1], 1))
 
-model2.fit(xtrain_reshaped, ytrain, batch_size =100, epochs=10, verbose=0)`
+model2.fit(xtrain_reshaped, ytrain, batch_size =100, epochs=10, verbose=0)
 
 ### 2. Linear Regression
 
@@ -135,22 +136,25 @@ model2.fit(xtrain_reshaped, ytrain, batch_size =100, epochs=10, verbose=0)`
 
 **Implementation**
 
-``````model_lin2 = LinearRegression()
+model_lin2 = LinearRegression()
 #fit the model
-model_lin2.fit(X_train,y_trai```
+model_lin2.fit(X_train,y_train)
 
 #prediction
 predict = model_lin2.predict(X_test)
 
 #calculation of the mean absolute error
 mean_abs_error = mean_absolute_error(y_test, predict)
-mean_abs_error```
+mean_abs_error
 
 ### 3. Random Forest Regressor
+
 **Why?** Captures non‑linear relationships and feature interactions, robust to outliers.
 
 **Implementation**
-`````# creating an instance of a Random Forest Regressor
+
+# creating an instance of a Random Forest Regressor
+
 model_rf2 = RandomForestRegressor(n_estimators=100, random_state=47)
 
 #fit the model with the training data
@@ -170,7 +174,8 @@ mean_abs_error2```
 
 **Historical price data fetched via pandas_datareader from Yahoo Finance.**
 
-````# dowloading yahoo finance
+# dowloading yahoo finance
+
 import yfinance as yfin
 
 tickers = ('VOO', 'AAPL', 'MSFT', 'AMZN', 'UPRO', 'NVDA', 'TSLA', 'SPY')
@@ -182,27 +187,33 @@ fin_data = yfin.download(tickers, start, end) # downloading yahoo finance data f
 
 fin_data.to_csv('./data/fin_data.csv')```
 
-
 **Preprocessing & Feature Engineering**
+
 - Normalization, forward‑fill, cumulative returns, moving averages.
 
 **Visualization**
+
 - Plots generated with Matplotlib (cumulative returns) and Seaborn (KDE, regplot).
 
 **Model Training & Evaluation**
+
 - Trained three models as above.
 - MAE (all models).
 
 **Prediction Visuals**
+
 - Overlaid KDE of actual vs. predicted.
 - Regression plots of predictions vs. true values.
 - Line Plots
 
 ## Justification
+
 ### Evaluation and Validation of models
+
 From my investigation of three different models, I observed that RandomForestRegressor delivered a much lower mean absolute error **(0.00755, 0.0038)** than the LSTM **(0.0087, 1.530)** or LinearRegression **(0.646, 0.132)** for Apple and SPY respectively. I also observed that tuning the parameters for LSTM (e.g the number of epochs and batch_size) resulted in better prediction.
 
 ### Interesting facts about the project
+
 When exploring the data, it was interesting to see how the stock prices of different companies changed due to the pandemic and how the technological companies stock prices bounced back more quickly than the other companies considered.
 Here are some major highlights from the data exploration section:
 
@@ -213,12 +224,15 @@ From the above plots, let's take note of the following:
 - 2021: Overall there was an improvement in the stock prices of all the companies we considered.
 - 2022: Rising inflation, increased interest rates, and the Russia-Ukraine war had a negative impact on the market. Tesla was hit the hardest.
 - 2023: There was an overall improvement compared to last year. NVDIA and Tesla grew exponentially.
+
 ### Difficulties encountered
+
 The Machine Learning for Trading project really helped me understand market. I learned so much. I spent some time watching courses from Khan Academy to understand the basic concepts of the Stock Market. I was able to learn to perform EDA with financial datasets. An additional practice to choosing the right model to predict the stock values.
 In the modelling part (particularly the LSTM), one would have to spend some time tuning the parameters and training it to get the best results.
+
 ### Improvements
+
 An improvement to my analysis could be the following:
 Take some significant time to tune the model parameters as well as include more features that might be relevant for stock price prediction.
 Try out more models and see if there might be one with a better performance than the **RandomForestRegressor**. I only tried three models for simplicity and time constraints.
 Explore other companies stocks to see how well one can predict their stocks prices with different models.
-````````
