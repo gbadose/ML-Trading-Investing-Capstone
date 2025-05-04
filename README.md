@@ -89,9 +89,10 @@ fin_data.fillna(method='bfill', inplace=True)
 4. **Train–Test Split**
    - Chronologically split data: first 80% of dates for training, last 20% for testing to mimic real‑world forecasting.
 
-python
+```python
 #split the data into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)```
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
+```
 
 ## Algorithms and Techniques
 
@@ -101,6 +102,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random
 
 #### Architecture & Hyperparameters
 
+```python
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Input, LSTM, Dense
 from sklearn.metrics import mean_absolute_error
@@ -113,13 +115,12 @@ Dense(25, activation='relu'),
 Dense(1)
 ])
 model_lstm.compile(optimizer='adam', loss='mean_squared_error')
-
 model_lstm.fit(X_train_reshaped, y_train, batch_size=1, epochs=5, verbose=1)
 
 # Evaluate
-
 preds_lstm = model_lstm.predict(X_test_reshaped)
 mae_lstm = mean_absolute_error(y_test, preds_lstm)
+```
 
 **Refined Hyperparameters**
 
