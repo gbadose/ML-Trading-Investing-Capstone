@@ -124,12 +124,14 @@ mae_lstm = mean_absolute_error(y_test, preds_lstm)
 
 **Refined Hyperparameters**
 
+```python
 # Train the model - part 4 (increasing no. of epochs and batch_size)
 
 xtrain = np.array(xtrain)
 xtrain_reshaped = xtrain.reshape((xtrain.shape[0], xtrain.shape[1], 1))
 
 model2.fit(xtrain_reshaped, ytrain, batch_size =100, epochs=10, verbose=0)
+```
 
 ### 2. Linear Regression
 
@@ -137,6 +139,7 @@ model2.fit(xtrain_reshaped, ytrain, batch_size =100, epochs=10, verbose=0)
 
 **Implementation**
 
+```python
 model_lin2 = LinearRegression()
 #fit the model
 model_lin2.fit(X_train,y_train)
@@ -147,6 +150,7 @@ predict = model_lin2.predict(X_test)
 #calculation of the mean absolute error
 mean_abs_error = mean_absolute_error(y_test, predict)
 mean_abs_error
+```
 
 ### 3. Random Forest Regressor
 
@@ -154,8 +158,8 @@ mean_abs_error
 
 **Implementation**
 
+```python
 # creating an instance of a Random Forest Regressor
-
 model_rf2 = RandomForestRegressor(n_estimators=100, random_state=47)
 
 #fit the model with the training data
@@ -167,7 +171,8 @@ predict2 #view some predictions
 
 #calculation of the mean absolute error
 mean_abs_error2 = mean_absolute_error(y_test, predict2)
-mean_abs_error2```
+mean_abs_error2
+```
 
 ## Implementation Details
 
